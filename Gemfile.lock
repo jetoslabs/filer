@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    filer (0.1.0)
+      thor (~> 0.20)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.15.0)
+    rake (13.0.6)
+    thor (0.20.3)
+
+PLATFORMS
+  x86_64-darwin-21
+
+DEPENDENCIES
+  filer!
+  minitest (~> 5.0)
+  rake (~> 13.0)
+
+BUNDLED WITH
+   2.3.7
