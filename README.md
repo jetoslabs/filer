@@ -22,7 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ bundle exec exe/filer rename_images_for_valid_url
+or
+
+    $ ruby lib/filer.rb  rename_images_for_valid_url
+
 
 ## Development
 
