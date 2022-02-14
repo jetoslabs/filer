@@ -3,8 +3,8 @@
 require 'thor'
 
 require_relative "filer/version"
-require_relative 'filer/hello'
-require_relative 'filer/rename'
+require_relative 'filer/thor/hello'
+require_relative 'filer/thor/rename'
 
 module Filer
   # class Error < StandardError; end
