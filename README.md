@@ -23,6 +23,7 @@ Or install it yourself as:
 ## Usage
 
     $ bundle exec exe/filer rename_images_for_valid_url
+    $ bundle exec exe/filer rename_extension
 or
 
     $ ruby lib/filer.rb  rename_images_for_valid_url

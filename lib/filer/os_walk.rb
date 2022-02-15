@@ -6,12 +6,13 @@ def rename_image_filenames_for_valid_url(dirpath, replace_char)
 end
 
 # formats file name
-def rename_filename_for_valid_url(path, basepath, replace_char, renames)
-  fullpath = "#{basepath}/#{path}"
+def rename_filename_for_valid_url(filepath, basepath, replace_char, renames)
+  print "filepath: #{filepath}, basepath: #{basepath}\n"
+  fullpath = "#{basepath}/#{filepath}"
   # print "fullpath: #{fullpath}\n"
   if File.file?(fullpath)
-    fname = File.basename(path)
-    dirpath = File.dirname(path)
+    fname = File.basename(filepath)
+    dirpath = File.dirname(filepath)
     fname_chars = rename_char_array_for_valid_url(fname.chars, replace_char)
     fname_new = fname_chars.join.to_s
     if fname != fname_new
@@ -64,4 +65,39 @@ def valid_url_char?(char)
     return true
   end
   return false
+end
+
+
+
+def rename_ext(basepath, curr_ext, next_ext)
+  renames = Hash.new
+  Dir.glob(File.join("**", "*.{#{curr_ext}}"), base: basepath) { |f| rename_filename_ext(f, basepath, curr_ext, next_ext, renames) }
+  return renames
+end
+
+def rename_filename_ext(relative_filepath, basepath, curr_ext, new_ext, renames)
+  fullpath = "#{basepath}/#{relative_filepath}"
+  print fullpath
+  if File.file?(fullpath)
+    fname = File.basename(relative_filepath)
+    dirpath = File.dirname(relative_filepath)
+    # fname_chars = rename_char_array_for_valid_url(fname.chars, replace_char)
+    # fname_new = fname_chars.join.to_s
+    # fname_new = fname[curr_ext] = new_ext
+    fname_new = fname.gsub(/#{curr_ext}/i, new_ext)
+    print(fname_new)
+    if fname != fname_new
+      if dirpath == '.'
+        new_path = fname_new
+      else
+        new_path = "#{dirpath}/#{fname_new}"
+      end
+      #       File.rename(relative_filepath, new_path)
+      renames[fullpath] = "#{basepath}/#{new_path}"
+      print "Rename:\n#{fullpath}  =>  #{basepath}/#{new_path}\n"
+      print "dirpath: #{dirpath}\n"
+    end
+  else
+    print "NOT A FILE!: #{fullpath}\n"
+  end
 end
