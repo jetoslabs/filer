@@ -21,7 +21,8 @@ def rename_filename_for_valid_url(filepath, basepath, replace_char, renames)
       else
         new_path = "#{dirpath}/#{fname_new}"
       end
-      #       File.rename(path, new_path)
+      new_fullpath = "#{basepath}/#{new_path}"
+      #       File.rename(fullpath, new_fullpath)
       renames[fullpath] = "#{basepath}/#{new_path}"
       print "Rename:\n#{fullpath}  =>  #{basepath}/#{new_path}\n"
       print "dirpath: #{dirpath}\n"
@@ -77,7 +78,6 @@ end
 
 def rename_filename_ext(relative_filepath, basepath, curr_ext, new_ext, renames)
   fullpath = "#{basepath}/#{relative_filepath}"
-  print fullpath
   if File.file?(fullpath)
     fname = File.basename(relative_filepath)
     dirpath = File.dirname(relative_filepath)
@@ -85,17 +85,18 @@ def rename_filename_ext(relative_filepath, basepath, curr_ext, new_ext, renames)
     # fname_new = fname_chars.join.to_s
     # fname_new = fname[curr_ext] = new_ext
     fname_new = fname.gsub(/#{curr_ext}/i, new_ext)
-    print(fname_new)
+    # print(fname_new)
     if fname != fname_new
       if dirpath == '.'
         new_path = fname_new
       else
         new_path = "#{dirpath}/#{fname_new}"
       end
-      #       File.rename(relative_filepath, new_path)
-      renames[fullpath] = "#{basepath}/#{new_path}"
-      print "Rename:\n#{fullpath}  =>  #{basepath}/#{new_path}\n"
+      new_fullpath = "#{basepath}/#{new_path}"
+      print "Rename: #{fullpath}  =>  #{new_fullpath}\n"
       print "dirpath: #{dirpath}\n"
+      File.rename(fullpath, new_fullpath)
+      renames[fullpath] = new_fullpath
     end
   else
     print "NOT A FILE!: #{fullpath}\n"
