@@ -1,0 +1,1 @@
+Logs of the command runs will be present in the current dir
