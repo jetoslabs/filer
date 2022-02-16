@@ -11,7 +11,7 @@ require_relative '../controllers/controllers'
 module Filer
   class CLI < Thor
 
-    desc "rename_for_valid_url [path, replace_char]", "rename_images_for_valid_url"
+    desc "rename_for_valid_url [path, replace_char]", "rename images for valid url"
     def rename_for_valid_url
       basepath = '/Users/anuragjha/Downloads'
       smth = "*.{jpg,jpeg,png}"
@@ -24,7 +24,7 @@ module Filer
       File.write("./logs/rename_for_valid_url.json", returned_args["output"].to_json)
     end
 
-    desc "rename_extension [path, curr_ext, new_ext]", "rename *.jpeg.jpg extension to *.jpg"
+    desc "rename_extension [path, curr_ext, new_ext]", "rename extension"
     def rename_extension
       basepath = '/Users/anuragjha/Downloads'
       curr_ext = "jpeg.jpg"
