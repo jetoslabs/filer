@@ -29,8 +29,8 @@ module Filer
       basepath = '/Users/anuragjha/Downloads'
       curr_ext = "jpeg.jpg"
       new_ext = "jpg"
-      yield_args = {"curr_ext" => curr_ext, "new_ext" => new_ext, "output" => {}}
-      returned_args = os_walk(basepath, "*.{#{curr_ext}}", yield_args) do |f, args|
+      input_args = {"curr_ext" => curr_ext, "new_ext" => new_ext, "output" => {}}
+      returned_args = os_walk(basepath, "*.{#{curr_ext}}", input_args) do |f, args|
         yield_method_rename_ext(f, args)
       end
       puts "returned: #{returned_args["output"]}"
