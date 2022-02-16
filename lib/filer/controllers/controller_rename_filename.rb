@@ -10,7 +10,8 @@ def yield_method_rename_filename_for_valid_url(f, args)
     fname_new = fname_chars.join.to_s
     if fname != fname_new
       new_filepath = "#{dirpath}/#{fname_new}"
-      #       File.rename(f, new_filepath)
+      options = args["options"]
+      # File.rename(f, new_filepath) if options[:execute]
       args["output"][f] = "#{new_filepath}"
     end
   else

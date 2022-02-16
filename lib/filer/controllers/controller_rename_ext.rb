@@ -10,7 +10,7 @@ def yield_method_rename_ext(f, args)
     fname_new = fname.gsub(/#{curr_ext}/i, new_ext)
     if fname != fname_new
       new_filepath = "#{dirpath}/#{fname_new}"
-      # File.rename(f, new_path)
+      # File.rename(f, new_filepath) if options[:execute]
       args["output"][f] = "#{new_filepath}"
     end
   else

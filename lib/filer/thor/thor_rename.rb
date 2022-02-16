@@ -12,11 +12,12 @@ module Filer
   class CLI < Thor
 
     desc "rename_for_valid_url [path, replace_char]", "rename images for valid url"
+    option :execute, :type => :boolean
     def rename_for_valid_url
       basepath = '/Users/anuragjha/Downloads'
       smth = "*.{jpg,jpeg,png}"
       replace_char = "_"
-      input_args = {"replace_char" => replace_char, "output" => {}}
+      input_args = {"replace_char" => replace_char, "options"=> options, "output" => {}}
       returned_args = os_walk(basepath, smth, input_args) do |f, args|
         yield_method_rename_filename_for_valid_url(f, args)
       end
@@ -25,6 +26,7 @@ module Filer
     end
 
     desc "rename_extension [path, curr_ext, new_ext]", "rename extension"
+    option :execute, :type => :boolean
     def rename_extension
       basepath = '/Users/anuragjha/Downloads'
       curr_ext = "jpeg.jpg"
