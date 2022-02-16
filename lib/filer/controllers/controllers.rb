@@ -5,7 +5,7 @@ require_relative 'controller_rename_ext'
 def os_walk(basepath, smth, args)
   Dir.glob(File.join("**", smth), base: basepath) do |relative_filepath|
     filepath = "#{basepath}/#{relative_filepath}"
-    # filepath is given by os_walk, args is received by os_wak (yield block know what to do with args)
+    # filepath is given by os_walk, args is received by os_walk (yielded block should know what to do with args)
     yield filepath, args
   end
   args
