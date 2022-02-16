@@ -5,7 +5,7 @@ require 'set'
 
 require 'thor'
 
-require_relative '../controllers/os_walker'
+require_relative '../controllers/controllers'
 
 
 module Filer
