@@ -17,14 +17,14 @@ module Filer
 
     desc "test_yield", "testing yield, args param used by yield block"
     def test_yield
-      basepath = '/Users/anuragjha/Downloads'
-      smth = "*.{jpg,jpeg,png}"
-      replace_char = "_"
-      args_for_block = {"replace_char"=> replace_char}
-      os_walk(basepath, smth, args_for_block) {|f, args| puts "0...#{f}....#{args}"}
-      os_walk(basepath, smth, args_for_block) {|f, args| yield_method1(f, args)}
-      args_for_block = {"replace_char"=> replace_char, "new_var"=> "new_var"}
-      result = os_walk(basepath, smth, args_for_block) {|f, args| yield_method2(f, args)}
+      basepath = '.'
+      smth = "*"
+      args_for_block1 = {"method"=>"", "file_no"=>0}
+      os_walk(basepath, smth, args_for_block1) {|f, args| puts "0...#{f}....#{args}"}
+      os_walk(basepath, smth, args_for_block1) {|f, args| yield_method1(f, args)}
+      # args_for_block = {"replace_char"=> replace_char, "new_var"=> "new_var"}
+      args_for_block2 = {"method"=>"", "file_no"=>0}
+      result = os_walk(basepath, smth, args_for_block2) {|f, args| yield_method2(f, args)}
       puts "result: #{result}"
     end
   end

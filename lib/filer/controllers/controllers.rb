@@ -12,10 +12,14 @@ def os_walk(basepath, smth, args)
 end
 
 def yield_method1(f, args)
+  args["method"] = "yield_method1"
   puts "1... #{f} #{args}"
+  args
 end
 
 def yield_method2(f, args)
+  args["file_no"] = args["file_no"] + 1
+  args["method"] = "yield_method2"
   puts "2... #{f} #{args}"
-  "okokokok"
+  args
 end
