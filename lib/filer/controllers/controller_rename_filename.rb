@@ -1,35 +1,20 @@
-
-# takes dir path as input and returns list of formatted filepath (within dir or subdir)
-def rename_image_filenames_for_valid_url(dirpath, replace_char)
-  renames = Hash.new
-  Dir.glob(File.join("**", "*.{jpg,jpeg,png}"), base: dirpath) { |f| rename_filename_for_valid_url(f, dirpath, replace_char, renames) }
-  return renames
-end
-
-# formats file name
-def rename_filename_for_valid_url(filepath, basepath, replace_char, renames)
-  print "filepath: #{filepath}, basepath: #{basepath}\n"
-  fullpath = "#{basepath}/#{filepath}"
-  # print "fullpath: #{fullpath}\n"
-  if File.file?(fullpath)
-    fname = File.basename(filepath)
-    dirpath = File.dirname(filepath)
+# This is top level method used in yield block (called by controllers/os_walk: yield stmt)
+# rename file name for valid url
+def yield_method_rename_filename_for_valid_url(f, args)
+  replace_char = args["replace_char"]
+  if File.file?(f)
+    # print "fullpath: #{f}\n"
+    fname = File.basename(f)
+    dirpath = File.dirname(f)
     fname_chars = rename_char_array_for_valid_url(fname.chars, replace_char)
     fname_new = fname_chars.join.to_s
     if fname != fname_new
-      if dirpath == '.'
-        new_path = fname_new
-      else
-        new_path = "#{dirpath}/#{fname_new}"
-      end
-      new_fullpath = "#{basepath}/#{new_path}"
-      #       File.rename(fullpath, new_fullpath)
-      renames[fullpath] = "#{basepath}/#{new_path}"
-      print "Rename:\n#{fullpath}  =>  #{basepath}/#{new_path}\n"
-      print "dirpath: #{dirpath}\n"
+      new_filepath = "#{dirpath}/#{fname_new}"
+      #       File.rename(f, new_filepath)
+      args["output"][f] = "#{new_filepath}"
     end
   else
-    print "NOT A FILE!: #{fullpath}\n"
+    print "NOT A FILE!: #{f}\n"
   end
 end
 
