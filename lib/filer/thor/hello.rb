@@ -7,7 +7,7 @@ module Filer
   class CLI < Thor
 
     desc "hello [name]", "hello"
-    def hello(name)
+    def hello(name="")
       if name != ""
         puts "Hello #{name}"
       else

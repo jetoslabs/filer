@@ -26,34 +26,19 @@ module Filer
       do_rename_extension(dirpath, curr_ext, new_ext)
     end
 
-    # desc "rename_for_valid_url", "rename files to have valid url chars by replacing non-valid chars with replace_char"
-    # def rename_for_valid_url
-    #   dirpath = '/Users/anuragjha/Downloads'
-    #   smth = "*.{jpg,jpeg,png}"
-    #   # os_walker(dirpath, smth) {|f| method_for_yield(f)}
-    #   os_walker(dirpath, smth) {|f, y| method_for_yield1(f, y)}
-    #
-    #
-    #
-    #
-    #   # # renames =
-    #   # os_walker(
-    #   #   LAMBDA_RENAME_FOR_VALID_URL,
-    #   #   {},
-    #   #   dirpath,
-    #   #   smth
-    #   # )
-    #   # # puts "renames: #{renames}"
-    # end
+    desc "test_yield", "testing yield, args param used by yield block"
+    def test_yield
+      basepath = '/Users/anuragjha/Downloads'
+      smth = "*.{jpg,jpeg,png}"
+      replace_char = "_"
+      args_for_block = {"replace_char"=> replace_char}
+      # os_walk(basepath, smth, args) {|f, args| puts "block!!!!!!!#{f}....#{args}"}
+      os_walk(basepath, smth, args_for_block) {|f, args| yield_method1(f, args)}
+      args_for_block = {"replace_char"=> replace_char, "new_var"=> "new_var"}
+      os_walk(basepath, smth, args_for_block) {|f, args| yield_method2(f, args)}
+    end
 
-    # desc "update_file_ext", "replace file ext"
-    # def rename_file_ext
-    #   dirpath = '/Users/anuragjha/Downloads'
-    #   cur_ext = "*.{jpeg.jpg}"
-    #   new_ext = "*.{jpg}"
-    #
-    #   func = os_walker(LAMBDA_RENAME_FOR_VALID_URL, dirpath, smth)
-    # end
+
 
   end
 end
